@@ -3,14 +3,12 @@ import Router from 'vue-router'
 import IndexLayout from '../layout/IndexLayout.vue'
 import SideLayout from '../layout/SideLayout.vue'
 
-
 import buyRoute from './buyRoute'
 import tranferRoute from './tranferRoute'
 
-
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
 	mode: 'history',
 	routes: [
 		{
@@ -70,3 +68,5 @@ export default new Router({
 		}
 	]
 })
+
+export default router;
