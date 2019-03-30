@@ -3,6 +3,11 @@ import Router from 'vue-router'
 import IndexLayout from '../layout/IndexLayout.vue'
 import SideLayout from '../layout/SideLayout.vue'
 
+
+import buyRoute from './buyRoute'
+import tranferRoute from './tranferRoute'
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -23,28 +28,13 @@ export default new Router({
 					meta: { column:'buy'},
 					component: SideLayout,  //左边栏布局组件，存放三级路由
 					name:'buy',
-					children: [
-						{
-							path:'index',
-							component: ()=>import('../views/buy/Index.vue'),
-							meta: { column: 'buy' },  //声明当前所处栏目
-						},
-						{
-							path: 'large-scale-car-selection',
-							component: () => import('../views/buy/large-scale-car-selection.vue'),
-							meta: { column: 'buy' },  //声明当前所处栏目
-						},
-						{
-							path: 'ai-recommendation-car',
-							component: () => import('../views/buy/ai-recommendation-car.vue'),
-							meta: { column: 'buy' },  //声明当前所处栏目
-						},
-						{
-							path: 'judicial-auction-vehicle-selection',
-							component: () => import('../views/buy/judicial-auction-vehicle-selection.vue'),
-							meta: { column: 'buy' },  //声明当前所处栏目
-						}
-					]
+					// 循环映射出路由的配置项（返回一个JSON配置对象数组）
+					children: buyRoute.children.map(item=>({
+						path: item.en, 
+						component: item.co, 
+						meta: { column: 'buy' },
+						name: item.en
+					}))
 				},
 				{
 					path: 'sale',
@@ -57,28 +47,12 @@ export default new Router({
 					component: SideLayout,  //左边栏布局组件，存放三级路由
 					meta: { column:'transfer'},
 					name:'transfer',
-					children:[
-						{
-							path:'index',
-							component: () => import('../views/transfer/Index.vue'),
-							meta: { column: 'transfer' },
-						},
-						{
-							path: 'b2b',
-							component: () => import('../views/transfer/B2B.vue'),
-							meta: { column: 'transfer' },
-						},
-						{
-							path: 'b2w',
-							component: () => import('../views/transfer/B2W.vue'),
-							meta: { column: 'transfer' },
-						},
-						{
-							path: 'w2b',
-							component: () => import('../views/transfer/W2B.vue'),
-							meta: { column: 'transfer' },
-						}
-					]
+					children: tranferRoute.children.map(item => ({
+						path: item.en,
+						component: item.co,
+						meta: { column: 'transfer' },
+						name: item.en
+					}))
 				},
 				{
 					path: 'insurance',
