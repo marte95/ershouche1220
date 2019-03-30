@@ -26,6 +26,8 @@ const router =  new Router({
 					meta: { column:'buy'},
 					component: SideLayout,  //左边栏布局组件，存放三级路由
 					name:'buy',
+					// 访问buy页面，自动跳转到当前路由
+					redirect: { name: 'large-scale-car-selection'}, 
 					// 循环映射出路由的配置项（返回一个JSON配置对象数组）
 					children: buyRoute.children.map(item=>({
 						path: item.en, 
@@ -45,6 +47,7 @@ const router =  new Router({
 					component: SideLayout,  //左边栏布局组件，存放三级路由
 					meta: { column:'transfer'},
 					name:'transfer',
+					redirect: { name: 'b2b' }, 
 					children: tranferRoute.children.map(item => ({
 						path: item.en,
 						component: item.co,

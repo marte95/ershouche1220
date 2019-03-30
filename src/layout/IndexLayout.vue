@@ -1,7 +1,10 @@
 <template>
     <div>
         <Header>
-            <Menu mode="horizontal" theme="dark" active-name="1">
+            <Menu mode="horizontal" theme="dark" 
+                :active-name="$store.state.routerStore.column"
+                @on-select="changeMenuHandle"
+            >
                 <div class="layout-logo">
                     <a href="/index/index">
                         <img src="http://aiqianduan.com/assets/images/logo.png" width="170">
@@ -42,7 +45,11 @@
 
 <script>
     export default {
-        
+        methods:{
+            changeMenuHandle(name){
+                this.$router.push({name})
+            }
+        }
     }
 </script>
 
