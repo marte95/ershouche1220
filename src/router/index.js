@@ -4,7 +4,7 @@ import IndexLayout from '../layout/IndexLayout.vue'
 import SideLayout from '../layout/SideLayout.vue'
 
 import buyRoute from './buyRoute'
-import tranferRoute from './tranferRoute'
+import transferRoute from './transferRoute'
 
 Vue.use(Router)
 
@@ -32,7 +32,11 @@ const router =  new Router({
 					children: buyRoute.children.map(item=>({
 						path: item.en, 
 						component: item.co, 
-						meta: { column: 'buy' },
+						meta: { 
+							column: 'buy',
+							scolumn: item.en, //侧边栏目（三级路由的英文名称）
+							scolumnc: item.cn //面包屑导航的中文名称
+						},
 						name: item.en
 					}))
 				},
@@ -48,10 +52,14 @@ const router =  new Router({
 					meta: { column:'transfer'},
 					name:'transfer',
 					redirect: { name: 'b2b' }, 
-					children: tranferRoute.children.map(item => ({
+					children: transferRoute.children.map(item => ({
 						path: item.en,
 						component: item.co,
-						meta: { column: 'transfer' },
+						meta: { 
+							column: 'transfer',
+							scolumn: item.en, //侧边栏目（三级路由的英文名称）
+							scolumnc: item.cn //面包屑导航的中文名称 
+						},
 						name: item.en
 					}))
 				},
