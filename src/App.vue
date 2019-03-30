@@ -1,6 +1,7 @@
 <template>
 	<div>
 		{{$store.state.testStore.a}}
+		<router-view></router-view>
 	</div>
 </template>
 
