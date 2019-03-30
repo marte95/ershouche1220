@@ -1,6 +1,6 @@
 <template>
 	<div>
-		{{$store.state.testStore.a}}
+		<!-- 一级路由的小电视-IndexLayout -->
 		<router-view></router-view>
 	</div>
 </template>
