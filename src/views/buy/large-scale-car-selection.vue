@@ -1,19 +1,25 @@
 <template>
     <div>
-        <h1>大表选车</h1>
-        <Button v-for="i in 100" :key="i" @click="showLayer(1000000 + i)">
-            看{{1000000 + i}}这车的图片
-        </Button>
+        <h1>汽车筛选器大表</h1>
+        
+        <FilterBox /> 
+        <BigTable /> 
     </div>
 </template>
 
 <script>
+    import FilterBox from "./components/FilterBox.vue"
+    import BigTable from "./components/BigTable.vue"
     export default {
         methods: {
             showLayer(id){
                 // 触发showShowCarpicLayer事件，让弹出层显示
                 this.$bus.$emit('showShowCarpicLayer', { id })
             }
+        },
+        components:{
+            FilterBox,
+            BigTable
         }
     }
 </script>
