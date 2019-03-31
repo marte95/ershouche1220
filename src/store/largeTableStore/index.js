@@ -53,7 +53,8 @@ export default {
             }
 
             // 请求汽车接口数据
-            const { page_amount, total, results } = await fetch('http://192.168.1.88/findcar?' + querystring.stringify(queryObj))
+            const URL = process.env.VUE_APP_URL;
+            const { page_amount, total, results } = await fetch( URL +'/findcar?' + querystring.stringify(queryObj))
             .then(data=>data.json())
 
             // 存储结果
