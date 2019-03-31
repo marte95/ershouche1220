@@ -4,7 +4,7 @@
         <h3>售价：{{result.price}}万 {{result.color}}色 {{result.fuel}}</h3>
         <h4>
             {{result.km | wan}}万公里
-            {{result.engine}}{{result.gearbox}}{{result.exhaust}}
+            {{result.engine}}{{result.gearbox}}
             {{new Date(result.buydate).getFullYear()}}年{{new Date(result.buydate).getMonth()}}月
         </h4>
     </div>

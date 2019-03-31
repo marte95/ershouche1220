@@ -1,7 +1,5 @@
 <template>
     <div class="chooseAlbum" v-if="store.id">
-        {{nowAlbum}}
-        {{imgaes.inner.length}}
         <ul>
             <li :class="{'cur': nowAlbum == 'view'}" @click="changeNowAlbum($event, 'view')">
                 外观<br>（{{imgaes.view.length}}）
