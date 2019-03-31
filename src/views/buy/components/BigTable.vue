@@ -5,7 +5,7 @@
                 <h3>根据当前查询条件，共找到{{total}}辆车符合条件</h3>
             </i-col>
         </Row>
-        <Table :columns="columns" :data="results"></Table>
+        <Table :columns="columns" :data="results" @on-sort-change="changeSort"></Table>
         <br>
         <Page show-elevator show-sizer show-total 
             :current="page" :page-size="pagesize" :total="total" 
@@ -19,7 +19,7 @@
     export default {
         data () {
             return {
-                columns
+                columns: columns(this.$store)
             }
         },
         computed: {
@@ -57,6 +57,9 @@
             changePageSize(pagesize){
                 this.$store.dispatch('largeTableStore/changePageSize', { pagesize })
             },
+            changeSort({key, order}){
+                this.$store.dispatch('largeTableStore/changeSort', {key, order})
+            }
         }
     }
 </script>

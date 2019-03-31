@@ -40,6 +40,9 @@ export default {
         // 修改当前页数量
         changePageAmount(state, { page_amount }) {
             state.page_amount = page_amount
+        },
+        changeSort(state, payload){
+            state.sort = payload
         }
     },
     actions: {
@@ -72,5 +75,11 @@ export default {
             commit('changePageSize', { pagesize})
             dispatch('init')
         },
+        changeSort({ commit, dispatch, state }, { key, order }){
+            // 改变排序页码要归一
+            commit('changePage', { page: 1 })
+            commit('changeSort', { sortby: key, sortdirection: order == 'asc' ? 1 : -1 })
+            dispatch('init')
+        }
     }
 }
