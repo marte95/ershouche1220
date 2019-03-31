@@ -7,7 +7,7 @@
                         @click="changeNowIdx((i-1) * 6 + (j-1))"
                         :class="{'cur': (i-1) * 6 + (j-1) == nowIdx}"
                     >
-                        <img :src="`http://192.168.1.88/images/carimages_small/${id}/${nowAlbum}/${getThePic(i, j)}`">
+                        <LoadingGifImage :src="`${url}/images/carimages_small/${id}/${nowAlbum}/${getThePic(i, j)}`" w="105" h="70" />>
                     </li>
                 </ul>
             </div>
@@ -27,6 +27,7 @@
     export default {
         data(){
             return {
+                url: process.env.VUE_APP_URL,
                 nowPage: 0 //因变量，它原则上是nowIdx算出来的，但用户能自己改变的
             }
         },

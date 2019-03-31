@@ -25,7 +25,7 @@ export default {
     actions: {
         async init({commit}, { id }){
             // 请求后端车辆数据接口，接口已经实现CORS跨域
-            const { result } = await fetch('http://192.168.1.88/car/' + id)
+            const { result } = await fetch(process.env.VUE_APP_URL + '/car/' + id)
             .then(data=>data.json())
 
             // 拿到服务器返回的数据后，存储到store中

@@ -5,6 +5,10 @@ import store from './store/index'
 import iView from 'iview';
 import VueBus from 'vue-bus';
 import 'iview/dist/styles/iview.css';
+import LoadingGifImage from './components/LoadingGifImage/index.vue';
+
+// 定义全局组件（预加载组件）
+Vue.component('LoadingGifImage', LoadingGifImage)
 
 Vue.use(iView);
 Vue.use(VueBus);

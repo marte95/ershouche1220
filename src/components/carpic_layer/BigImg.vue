@@ -1,11 +1,16 @@
 <template>
     <div v-if="id">
-        <img :src="`http://192.168.1.88/images/carimages/${id}/${nowAlbum}/${pic}`">
+        <LoadingGifImage :src="`${url}/images/carimages/${id}/${nowAlbum}/${pic}`" w="750" h="500" />
     </div>
 </template>
 
 <script>
     export default {
+        data(){
+            return {
+                url: process.env.VUE_APP_URL
+            }
+        },
         computed: {
             store(){
                 return this.$store.state.carpicStore   //获取store
