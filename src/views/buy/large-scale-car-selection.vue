@@ -11,6 +11,9 @@
     import FilterBox from "./components/FilterBox.vue"
     import BigTable from "./components/BigTable.vue"
     export default {
+        created(){
+            this.$store.dispatch('largeTableStore/init')
+        },
         methods: {
             showLayer(id){
                 // 触发showShowCarpicLayer事件，让弹出层显示
