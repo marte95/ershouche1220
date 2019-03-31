@@ -61,8 +61,16 @@ export default {
             commit('changeResults', { results })
             commit('changeTotal', { total })
             commit('changePageAmount', { page_amount })
+        },
 
-            console.log(total, results )
-        }
+        changePage({commit, dispatch, state}, {page}){
+            commit('changePage', { page})
+            dispatch('init')
+        },
+        changePageSize({ commit, dispatch, state }, { pagesize }){
+            commit('changePage', { page: 1})  //页码归一
+            commit('changePageSize', { pagesize})
+            dispatch('init')
+        },
     }
 }
