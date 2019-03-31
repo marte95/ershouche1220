@@ -21,6 +21,10 @@ router.afterEach((to, from)=>{
   store.commit('routerStore/changeIsShowSide', { isShowSide: true})
 })
 
+// 全局过滤器
+Vue.filter('wan', function(str){
+  return Math.round(str / 10000)  //将公里数过滤万单位
+})
 
 Vue.config.productionTip = false
 

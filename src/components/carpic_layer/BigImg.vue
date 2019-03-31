@@ -28,7 +28,7 @@
 
 <style scoped lang="stylus">
     img{
-        width 350px 
-        height 300px
+        width 750px 
+        height 500px
     }
 </style>
