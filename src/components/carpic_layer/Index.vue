@@ -2,18 +2,26 @@
     <div class="mask" @click="hideShowCarpicLayer">
         <!-- .stop修饰符阻止事件冒泡，留空表示不做任何事情 -->
         <div class="inner" @click.stop="">
+            <a href="###" class="closeBtn" @click="hideShowCarpicLayer">×</a>
             <div class="bigImgBox">
-                <a href="###" class="closeBtn" @click="hideShowCarpicLayer">×</a>
-                <img src="http://192.168.1.88/images/carimages/1000002/view/5a409c5717a0c710849_20.jpg" >
+                <BigImg />
             </div>
 
             <div class="rightPart">
-                {{carpiclayerId}}
+                <CarInfo />
+                <ChooseAlbum />
+                <div style="clear:both;"></div>
+                <SmallPicNav />
             </div>
         </div>
     </div>
 </template>
 <script>
+    import BigImg from "./BigImg"
+    import CarInfo from "./CarInfo"
+    import ChooseAlbum from "./ChooseAlbum"
+    import SmallPicNav from "./SmallPicNav"
+
     export default {
         props:['carpiclayerId'],
         created(){
@@ -24,6 +32,12 @@
             hideShowCarpicLayer(){
                 this.$bus.emit('hideShowCarpicLayer')
             }
+        },
+        components: {
+            BigImg,
+            CarInfo,
+            ChooseAlbum,
+            SmallPicNav
         }
     }
 </script>
@@ -46,30 +60,25 @@
             left 50%
             margin-top -250px
             margin-left -500px
-
+            .closeBtn {
+                position: absolute;
+                width: 36px;
+                height: 36px;
+                background-color: orange;
+                right: -18px;
+                top: -18px;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 34px;
+                text-decoration: none;
+                font-size: 38px;
+                color: white;
+                border: 2px solid white;
+                font-family: "times new roman";
+             }
             .bigImgBox{
                 float left
                 width 750px
-
-                img{
-                    width 750px 
-                }
-                .closeBtn {
-                    position: absolute;
-                    width: 36px;
-                    height: 36px;
-                    background-color: orange;
-                    right: -18px;
-                    top: -18px;
-                    border-radius: 50%;
-                    text-align: center;
-                    line-height: 34px;
-                    text-decoration: none;
-                    font-size: 38px;
-                    color: white;
-                    border: 2px solid white;
-                    font-family: "times new roman";
-                }
             }
 
             .rightPart {
