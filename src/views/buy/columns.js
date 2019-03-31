@@ -22,6 +22,7 @@ export default (store) =>{
         { title: '价格', key: 'price', sortable: 'custom' },
         { title: '档位', key: 'gearbox' },
         { title: '排量', key: 'engine' },
+        { title: '环保', key: 'exhaust' },
         { title: '公里数', key: 'km', sortable: 'custom' },
         { title: '购买时间', key: 'buydate' },
         { title: '燃料', key: 'fuel' },

@@ -1,10 +1,12 @@
 <template>
     <div class="bigTable_wrap" @click="clickHandle">
+        <br>
         <Row>
             <i-col span="18">
                 <h3>根据当前查询条件，共找到{{total}}辆车符合条件</h3>
             </i-col>
         </Row>
+        <br>
         <Table :columns="columns" :data="results" @on-sort-change="changeSort"></Table>
         <br>
         <Page show-elevator show-sizer show-total 
