@@ -44,6 +44,64 @@ export default {
             // 切换图集
             commit('changeNowAlbum', { nowAlbum })
             commit('changeNowIdx', { nowIdx: 0 })
+        },
+
+        goNext({commit ,state}){
+            if(state.nowIdx < state.result.images[state.nowAlbum].length-1){
+                commit('changeNowIdx', { nowIdx: state.nowIdx + 1 })
+            } else {
+                // nowIdx是当前每个图集的图片编号，每次切换图集都必须归0
+                commit('changeNowIdx', { nowIdx: 0 })
+                // 判断当前图集
+                switch(state.nowAlbum){
+                    case 'view': 
+                        commit('changeNowAlbum', { nowAlbum:'inner' })
+                        break;
+                    case 'inner':
+                        commit('changeNowAlbum', { nowAlbum: 'engine' })
+                        break;
+                    case 'engine': 
+                        commit('changeNowAlbum', { nowAlbum:'more' })
+                        break;
+                    case 'more':
+                        commit('changeNowAlbum', { nowAlbum: 'view' })
+                        break;
+                }
+            }
+        },
+        goPrev({ commit, state }) {
+            if (state.nowIdx > 0) {
+                commit('changeNowIdx', { nowIdx: state.nowIdx - 1 })
+            } else {
+                // 判断当前图集
+                // switch (state.nowAlbum) {
+                //     case 'view':
+                //         commit('changeNowAlbum', { nowAlbum: 'more' })
+                //         break;
+                //     case 'more':
+                //         commit('changeNowAlbum', { nowAlbum: 'engine' })
+                //         break;
+                //     case 'engine':
+                //         commit('changeNowAlbum', { nowAlbum: 'inner' })
+                //         break;
+                //     case 'inner':
+                //         commit('changeNowAlbum', { nowAlbum: 'view' })
+                //         break;
+                // }
+
+                var arr = ['view', 'inner', 'engine', 'more'];
+                // 检查数组中是否存在某项，存在返回当前项下标
+                var index = arr.indexOf(state.nowAlbum)
+                // 切换数组中的图集类型
+                index = index <= 0 ? 3 : index - 1
+                // 根据下标选择数组中的图集类型
+                var nowAlbum = arr[index]
+                // 改变
+                commit('changeNowAlbum', { nowAlbum })
+                
+                // nowIdx是当前每个图集的图片编号，每次切换图集都必须归0
+                commit('changeNowIdx', { nowIdx: state.result.images[state.nowAlbum].length - 1 })
+            }
         }
     }
 }

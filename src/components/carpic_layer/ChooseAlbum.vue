@@ -11,7 +11,7 @@
                 引擎<br>（{{imgaes.engine.length}}）
             </li>
             <li :class="{'cur': nowAlbum == 'more'}" @click="changeNowAlbum($event, 'more')">
-                其他<br>（{{imgaes.more.length}}）
+                更多<br>（{{imgaes.more.length}}）
             </li>
         </ul>
     </div>
