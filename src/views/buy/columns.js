@@ -2,7 +2,6 @@ export default [
     { 
         title: '缩略图', key: 'avatar',
         render(h, {row}){
-            console.log(row)
             // 这是JSX语法
             return h('div', {attrs: {'data-id': row.id}}, [
                 h('LoadingGifImage', {
@@ -23,5 +22,11 @@ export default [
     { title: '排量', key: 'engine'},
     { title: '公里数', key: 'km'},
     { title: '购买时间', key: 'buydate'},
-    { title: '燃料', key: 'fuel'}
+    { title: '燃料', key: 'fuel'},
+    { 
+        title: '是否含牌', key: 'license',
+        render(h, {row}){
+            return h('div', {}, row.license ? '是' : '否')
+        }
+    }
 ]
