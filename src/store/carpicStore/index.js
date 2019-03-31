@@ -37,6 +37,13 @@ export default {
             commit('changeNowAlbum', { nowAlbum: 'view'})
             // 当前图片编号归0
             commit('changeNowIdx', { nowIdx: 0})
+        },
+
+        // 改变当前图集
+        changeNowAlbum({ commit }, { nowAlbum }) {
+            // 切换图集
+            commit('changeNowAlbum', { nowAlbum })
+            commit('changeNowIdx', { nowIdx: 0 })
         }
     }
 }
