@@ -16,6 +16,10 @@
 <script>
     export default {
         props:['carpiclayerId'],
+        created(){
+            // 已经就绪，触发异步命令，根据id发起Ajax请求
+            this.$store.dispatch('carpicStore/init', this.carpiclayerId )
+        },
         methods: {
             hideShowCarpicLayer(){
                 this.$bus.emit('hideShowCarpicLayer')
