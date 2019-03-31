@@ -12,8 +12,9 @@ const router =  new Router({
 	mode: 'history',
 	routes: [
 		{
-			path:'/index',
+			path:'/',
 			component: IndexLayout,
+			redirect: { name: 'index' }, 
 			children: [
 				{
 					path: 'index',
