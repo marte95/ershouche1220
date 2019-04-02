@@ -22,13 +22,17 @@
         />
 
         <br>
-        <div>
+        <div v-if="isShowChangeColModal">
+            <Modal :value="true" title="请您自定义表格的列顺序" @on-ok="ok" @on-cancel="cancel">
+                <ChangeColSort ref="ccs"></ChangeColSort>
+            </Modal>
         </div>
     </div>
 </template>
 
 <script>
     import columns from "../columns.js"
+    import ChangeColSort from "./ChangeColSort.vue"
     export default {
         created(){
             // 如果本地存储为空，设置本地存储，自定义存储一些key的顺序
@@ -38,6 +42,7 @@
         },
         data () {
             return {
+                isShowChangeColModal: false,
                 columns: columns(this.$store)
             }
         },
@@ -55,7 +60,22 @@
                 return this.$store.state.largeTableStore.pagesize
             }
         },
+        components: {
+            ChangeColSort
+        },
         methods: {
+            // 显示模态框
+            showChangeColModal(){
+                this.isShowChangeColModal = true
+            },
+            // 确定
+            ok(){
+                this.isShowChangeColModal = false
+            },
+            // 取消
+            cancel(){
+                this.isShowChangeColModal = false
+            },
             // 所以子元素的事件委托
             clickHandle(e){
                 // 如果你点击的是图片
