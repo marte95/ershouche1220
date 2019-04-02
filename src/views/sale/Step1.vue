@@ -1,15 +1,82 @@
 <template>
-    <div>
-        <h1>我是步骤1</h1>
+    <div style="width:500px;margin:50px auto">
+        <Form ref="formInline" :model="myform" :rules="myrules">
+            <FormItem prop="name">
+                <Input type="text" v-model="myform.name" placeholder="请填写姓名">
+                    <Icon type="ios-person-outline" slot="prepend"></Icon>
+                </Input>
+            </FormItem>
+            <FormItem prop="password">
+                <Input type="password" v-model="myform.password" placeholder="请填写密码">
+                    <Icon type="ios-lock-outline" slot="prepend"></Icon>
+                </Input>
+            </FormItem>
+            
+            <FormItem prop="sex">
+                <RadioGroup v-model="myform.sex">
+                    <Radio label="男">男</Radio>
+                    <Radio label="女">女</Radio>
+                </RadioGroup>
+            </FormItem>
+            
+            <FormItem prop="idcard" lable="身份证号码">
+                <Input type="text" v-model="myform.idcard" placeholder="请填写身份证号码">
+                </Input>
+            </FormItem>
+
+            <FormItem>
+                <Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
+            </FormItem>
+        </Form>
     </div>
 </template>
 
 <script>
     export default {
-        
+        data () {
+            return {
+                myform: {
+                    name: '',
+                    password: '' 
+                },
+                myrules: {
+                    name: [
+                        { 
+                            required: true,   //必填
+                            message: '必须填写姓名', 
+                            // trigger: 'blur'   //失去焦点触发
+                        },
+                        {
+                            type: 'string',
+                            pattern:'/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/', //正则匹配
+                            message: '别闹，请填写准确的姓名', 
+                        }
+                    ],
+                    // 性别校验规则
+                    sex:[
+                        {required: true, message: '请务必选择性别' }
+                    ],
+                    idcard: [
+                        {required: true, message: '请必须填写身份证号码' },
+                        {
+                            type: 'string',
+                            pattern:'/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/', //正则匹配
+                            message: '别闹，请填写准确的身份证号码', 
+                        }
+                    ]
+                }
+            }
+        },
+        methods: {
+            handleSubmit(name) {
+                // this.$refs[name].validate((valid) => {
+                //     if (valid) {
+                //         this.$Message.success('Success!');
+                //     } else {
+                //         this.$Message.error('Fail!');
+                //     }
+                // })
+            }
+        }
     }
 </script>
-
-<style scoped>
-
-</style>
