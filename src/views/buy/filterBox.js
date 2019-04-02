@@ -41,13 +41,15 @@ export default [
         'english': 'price',
         'max': 110,
         'min': 0,
+        'rate': 1 //比例
     },
     {
         'type': '范围条',
         'chinese': '公里数（万公里）',
         'english': 'km',
-        'max':110,
+        'max': 1000000,
         'min':0,
+        'rate': 10000  //比例
     },
     
 ]

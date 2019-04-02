@@ -16,7 +16,7 @@ export default {
             // { k: 'color', v: '红v白v'},
             // { k: 'engine', v: '1.6Lv2.0L'},
             { k: 'price', v: '0to100'},
-            { k: 'km', v: '0to1000000'},
+            { k: 'km', v: '0to300000'},
         ],  
         results:[],   // 根据当前筛选条件，得到本页的数据（数据来自于服务器）
         total: 0,     // 根据当前筛选条件，得到数据总数量（数据来自于服务器）
@@ -106,7 +106,6 @@ export default {
             dispatch('init')
         },
         changeFilter({ commit, dispatch, state}, {k , v}){
-            console.log('当前选择的选项：', k)
             // 判断用户的意图是增加、删除、修改？要判断filters中是否已经存在同名的k
             let isExist = false; //filters 默认没有k和v
 
@@ -132,8 +131,6 @@ export default {
 
             commit('changePage', { page: 1 })
             dispatch('init')
-
-            console.log(state.filters)
         }
     }
 }
