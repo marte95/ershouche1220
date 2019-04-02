@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import columns from "../columns.js"
+    import columns from "../utils/columns.js"
     import ChangeColSort from "./ChangeColSort.vue"
     export default {
         created(){
@@ -70,6 +70,13 @@
             },
             // 确定
             ok(){
+                // 读取用户拖拽改变的顺序数组
+                const arr = this.$refs.ccs.arr1;
+                // 得到新的排序数组，写入本地存储，覆盖原有的
+                localStorage.setItem('colSort', JSON.stringify(arr))
+                // 重新更改列表
+                this.columns = columns(this.$store)
+                // 关闭模态框
                 this.isShowChangeColModal = false
             },
             // 取消

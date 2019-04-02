@@ -54,7 +54,8 @@
 
 <script>
     import moment from "moment"
-    import filterBox from "../filterBox.js"
+    import filterBox from "../utils/filterBox.js"
+    import dictionary from "../utils/dictionary.js"
     import My2InputAndButton from "./My2InputAndButton.vue"
     export default {
         data(){
@@ -74,18 +75,6 @@
             // 将英文的k名转换中文，显示k值
             showTagK(k){
                 // 英文对应的中文字典
-                const dictionary = {
-                    brand: "品牌",
-                    series: "车系",
-                    color: "颜色",
-                    price: '价格',
-                    km: '公里数',
-                    engine: "排量",
-                    buydate: '购买日期',
-                    exhaust: "环保",
-                    gearbox: "变速箱",
-                    fuel: "燃料"
-                }
                 return dictionary[k]  //根据传入的k返回对应的中文
             },
 
