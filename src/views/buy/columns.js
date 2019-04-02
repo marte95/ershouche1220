@@ -51,5 +51,18 @@ export default (store) =>{
     }
 
 
-    return o;
+    // 读取本地存储，按照本地存储的顺序进行排序
+    if (localStorage.getItem('colSort')){
+        let sortArr = JSON.parse(localStorage.getItem('colSort'))
+        // 根据本地存储的顺序，重写列表的顺序和内容
+        return sortArr.map(item => {
+            for (let i = 0; i < o.length; i++) {
+                if (o[i].key === item) {
+                    return o[i]
+                }
+            }
+        })
+    }
+
+    // return o;
 }

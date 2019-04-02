@@ -1,24 +1,41 @@
 <template>
     <div class="bigTable_wrap" @click="clickHandle">
         <br>
+        <br>
         <Row>
             <i-col span="18">
                 <h3>根据当前查询条件，共找到{{total}}辆车符合条件</h3>
             </i-col>
         </Row>
         <br>
+
+        <!-- 扳手 -->
+        <Button class="btn" type="primary" icon="md-build" shape="circle"       
+            @click="showChangeColModal">
+        </Button>
+
         <Table :columns="columns" :data="results" @on-sort-change="changeSort"></Table>
         <br>
         <Page show-elevator show-sizer show-total 
             :current="page" :page-size="pagesize" :total="total" 
             @on-change="changePage" @on-page-size-change="changePageSize"
         />
+
+        <br>
+        <div>
+        </div>
     </div>
 </template>
 
 <script>
     import columns from "../columns.js"
     export default {
+        created(){
+            // 如果本地存储为空，设置本地存储，自定义存储一些key的顺序
+            if(!localStorage.getItem('colSort')){
+                localStorage.setItem('colSort', JSON.stringify(['id', 'avatar','brand','series','color','price' ,'km','gearbox', 'engine','buydate','exhaust','license']))
+            }
+        },
         data () {
             return {
                 columns: columns(this.$store)
