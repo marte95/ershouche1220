@@ -1,14 +1,5 @@
 <template>
     <div class="bigTable_wrap" @click="clickHandle">
-        <br>
-        <br>
-        <Row>
-            <i-col span="18">
-                <h3>根据当前查询条件，共找到{{total}}辆车符合条件</h3>
-            </i-col>
-        </Row>
-        <br>
-
         <!-- 扳手 -->
         <Button class="btn" type="primary" icon="md-build" shape="circle"       
             @click="showChangeColModal">
@@ -16,10 +7,9 @@
 
         <Table :columns="columns" :data="results" @on-sort-change="changeSort"></Table>
         <br>
-        <Page show-elevator show-sizer show-total 
-            :current="page" :page-size="pagesize" :total="total" 
-            @on-change="changePage" @on-page-size-change="changePageSize"
-        />
+        
+        <!-- 分页条组件 -->
+        <MyPage></MyPage>
 
         <br>
         <div v-if="isShowChangeColModal">
@@ -33,6 +23,7 @@
 <script>
     import columns from "../utils/columns.js"
     import ChangeColSort from "./ChangeColSort.vue"
+    import MyPage from "./MyPage.vue"
     export default {
         created(){
             // 如果本地存储为空，设置本地存储，自定义存储一些key的顺序
@@ -49,19 +40,11 @@
         computed: {
             results(){
                 return this.$store.state.largeTableStore.results
-            },
-            total(){
-                return this.$store.state.largeTableStore.total
-            },
-            page(){
-                return this.$store.state.largeTableStore.page
-            },
-            pagesize(){
-                return this.$store.state.largeTableStore.pagesize
             }
         },
         components: {
-            ChangeColSort
+            ChangeColSort,
+            MyPage
         },
         methods: {
             // 显示模态框
@@ -94,14 +77,6 @@
                         this.$bus.emit('showShowCarpicLayer', {id})
                     }
                 }
-            },
-            // 改变分页页码
-            changePage(page){
-                this.$store.dispatch('largeTableStore/changePage', { page })
-            },
-            // 改变每页显示的数量
-            changePageSize(pagesize){
-                this.$store.dispatch('largeTableStore/changePageSize', { pagesize })
             },
             changeSort({key, order}){
                 this.$store.dispatch('largeTableStore/changeSort', {key, order})
