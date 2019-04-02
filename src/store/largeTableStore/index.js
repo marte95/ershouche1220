@@ -14,7 +14,9 @@ export default {
         //存储筛选过滤的条件
         filters: [
             // { k: 'color', v: '红v白v'},
-            // { k: 'engine', v: '1.6Lv2.0L'}
+            // { k: 'engine', v: '1.6Lv2.0L'},
+            { k: 'price', v: '0to100'},
+            { k: 'km', v: '0to1000000'},
         ],  
         results:[],   // 根据当前筛选条件，得到本页的数据（数据来自于服务器）
         total: 0,     // 根据当前筛选条件，得到数据总数量（数据来自于服务器）
