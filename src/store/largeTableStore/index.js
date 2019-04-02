@@ -15,8 +15,9 @@ export default {
         filters: [
             // { k: 'color', v: '红v白v'},
             // { k: 'engine', v: '1.6Lv2.0L'},
-            { k: 'price', v: '0to100'},
-            { k: 'km', v: '0to300000'},
+            // { k: 'price', v: '0to100'},
+            // { k: 'km', v: '0to300000'},
+            // { 'k': 'buydate', 'v': '1441641600000to1536336000000'}
         ],  
         results:[],   // 根据当前筛选条件，得到本页的数据（数据来自于服务器）
         total: 0,     // 根据当前筛选条件，得到数据总数量（数据来自于服务器）
@@ -76,7 +77,6 @@ export default {
             // 遍历filters数组，为查询字符串对象添加查询对象
             for(let i = 0; i < state.filters.length;i++){
                 queryObj[state.filters[i].k] = state.filters[i].v
-                console.log(queryObj)
             }
 
             // 请求汽车接口数据

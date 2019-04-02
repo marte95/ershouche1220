@@ -12,8 +12,6 @@
                 <div v-if="item.type == '范围条'">
                     <Row>
                         <Col span="12">
-                            {{getVbyK(item.english, item.type,item.max, item.min,item.rate)}}
-                            <!-- {{item.min / item.rate}} {{item.max / item.rate}} -->
                             <Slider range :min="item.min / item.rate" :max="item.max / item.rate" 
                                 :value="getVbyK(item.english, item.type, item.max, item.min,item.rate)"
                                 @on-change="changeHandle(item.english, $event, item.type, item.rate)"
@@ -29,6 +27,14 @@
                             </My2InputAndButton>
                         </Col>
                     </Row>
+                </div>
+
+                <div v-if="item.type === '日期范围'">
+                     <DatePicker type="daterange" placeholder="请选择购买时间" :clearable="false"
+                        :value="getVbyK(item.english, item.type)" 
+                        @on-change="changeHandle(item.english, $event, item.type)"
+                     >
+                     </DatePicker>
                 </div>
             </Col>
         </Row>
@@ -63,7 +69,10 @@
                         }else if(type === '范围条'){
                             // 返回长度为2的数组，四舍五入
                             return this.filters[i].v.split('to').map(item=>Math.round(Number(item) / rate))
-                        }
+                        } else if(type === '日期范围'){
+                            // return [new Date(2018, 8, 8), new Date(2019, 3, 8)]
+                            return this.filters[i].v.split('to').map(item=>new Date(Number(item)))
+                        } 
                     }
                 }
 
@@ -71,15 +80,19 @@
                     return [] //如果filters中没有当前的k，则返回空数组
                 }else if(type === '范围条'){
                     return [min / rate, max / rate] //返回计算后的最小和最大值
-                }
+                } else if(type === '日期范围'){
+                    return [] 
+                } 
             },
 
             // 复选框触发筛选条件，得到当前的k和v值数组
             changeHandle(k, v, type, rate){
                 if(type === '复选框'){
-                    v = v.join('v')
+                    v = v.join('v');
                 }else if( type === '范围条'){
-                    v = v.map(item=>item * rate).join('to')
+                    v = v.map(item=>item * rate).join('to');
+                } else if (type === '日期范围'){
+                    v = v.map(item=>Date.parse(new Date(item))).join('to');
                 }
                 this.$store.dispatch('largeTableStore/changeFilter', {k, v})
             }

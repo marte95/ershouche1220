@@ -1,3 +1,5 @@
+import moment from "moment"
+
 export default (store) =>{
     let o = [
         {
@@ -15,17 +17,22 @@ export default (store) =>{
                 ])
             }
         },
-        { title: '编号', key: 'id', sortable: 'custom' },
-        { title: '品牌', key: 'brand' },
-        { title: '型号', key: 'series' },
-        { title: '颜色', key: 'color' },
+        { title: '编号', key: 'id', sortable: 'custom', width: 85 },
+        { title: '品牌', key: 'brand', width:70 },
+        { title: '型号', key: 'series', width: 80 },
+        { title: '颜色', key: 'color', width: 55 },
         { title: '价格', key: 'price', sortable: 'custom' },
-        { title: '档位', key: 'gearbox' },
-        { title: '排量', key: 'engine' },
-        { title: '环保', key: 'exhaust' },
+        { title: '档位', key: 'gearbox', width: 60 },
+        { title: '排量', key: 'engine', width: 60},
+        { title: '环保', key: 'exhaust', width: 60},
         { title: '公里数', key: 'km', sortable: 'custom' },
-        { title: '购买时间', key: 'buydate' },
-        { title: '燃料', key: 'fuel' },
+        { 
+            title: '购买时间', key: 'buydate',
+            render(h, {row}){
+                return h('div', {}, moment(row.buydate).format('YYYY年MM月DD日'))
+            }
+        },
+        { title: '燃料', key: 'fuel', width: 85 },
         {
             title: '是否含牌', key: 'license',
             render(h, { row }) {

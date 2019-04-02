@@ -51,5 +51,10 @@ export default [
         'min':0,
         'rate': 10000  //比例
     },
+    {
+        'type': '日期范围',
+        'chinese': '购买时间范围',
+        'english': 'buydate',
+    },
     
 ]
