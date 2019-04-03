@@ -76,7 +76,7 @@
                             // 当失去焦点的时候找服务端校验
                             async validator(rule, value, callback){
                                 console.log(rule, value)
-                                const data = await fetch('http://192.168.1.88checkChejiahhao?cjh=' + value)
+                                const data = await fetch('http://192.168.1.88/checkChejiahhao?cjh=' + value)
 
                                 if(Math.random() > 0.5){
                                     callback(new Error('对不起，车架号已经被占用！'))
