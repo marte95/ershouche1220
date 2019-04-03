@@ -23,6 +23,11 @@
                 <Input type="text" v-model="myform.idcard" placeholder="请填写身份证号码">
                 </Input>
             </FormItem>
+            <FormItem prop="chejiahao" lable="车架号">
+                <Input type="text" v-model="myform.chejiahao" placeholder="请填写车架号">
+                </Input>
+            </FormItem>
+
 
             <FormItem>
                 <Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
@@ -63,19 +68,36 @@
                             pattern:'/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/', //正则匹配
                             message: '别闹，请填写准确的身份证号码', 
                         }
+                    ],
+                    chejiahao: [
+                        { required: true, message: '请必须填写车架号' },
+                        {
+                            trigger: 'blur',
+                            // 当失去焦点的时候找服务端校验
+                            async validator(rule, value, callback){
+                                console.log(rule, value)
+                                const data = await fetch('http://192.168.1.88checkChejiahhao?cjh=' + value)
+
+                                if(Math.random() > 0.5){
+                                    callback(new Error('对不起，车架号已经被占用！'))
+                                }else{
+                                    callback()
+                                }
+                            }
+                        }
                     ]
                 }
             }
         },
         methods: {
             handleSubmit(name) {
-                // this.$refs[name].validate((valid) => {
-                //     if (valid) {
-                //         this.$Message.success('Success!');
-                //     } else {
-                //         this.$Message.error('Fail!');
-                //     }
-                // })
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$Message.success('Success!');
+                    } else {
+                        this.$Message.error('Fail!');
+                    }
+                })
             }
         }
     }
