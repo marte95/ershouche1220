@@ -73,6 +73,8 @@
                 if(name === '更改资料'){
                     // 弹出抽屉
                     this.$bus.emit('ShowUserInfoDrawer')
+                }else if(name === '更改头像'){
+                    this.$bus.emit('ShowChangeAvatarLayer')
                 }
             }
         }
