@@ -53,7 +53,6 @@
                 </div>
             </Menu>
         </Header>
-                    {{store}}
         <!-- 二级路由的电视 -->
         <router-view></router-view>
     </div>
@@ -73,7 +72,7 @@
             clickHandle(name){
                 if(name === '更改资料'){
                     // 弹出抽屉
-                    this.$bus.emit('ShowUserInfoDrawser')
+                    this.$bus.emit('ShowUserInfoDrawer')
                 }
             }
         }

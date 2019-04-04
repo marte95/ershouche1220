@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default {
     namespaced: true,
     state: {
@@ -27,5 +29,18 @@ export default {
         changeSex(state, { sex }) {
             state.sex = sex
         },
+    },
+    actions: {
+        async fetchUserInfo({commit}){
+            const token = localStorage.getItem('token');
+            const { login, username, nickname, avatar, mobile, sex } = await axios.get('/api/userinfo?token=' + token).then(res=>res.data)
+
+            commit('changeLogin', { login })
+            commit('changeUsername', { username })
+            commit('changeNickname', { nickname })
+            commit('changeAvatar', { avatar })
+            commit('changeMobile', { mobile })
+            commit('changeSex', { sex })
+        }
     }
 }
