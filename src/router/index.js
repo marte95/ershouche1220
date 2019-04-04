@@ -77,7 +77,13 @@ const router =  new Router({
 					name:'parking'
 				},
 			]
-		}
+		},
+		{
+			path: '/login',
+			component: ()=> import('../views/login/Login.vue'),
+			name:'login'
+		},
+		{ path: "*", redirect: { name: 'index' } }
 	]
 })
 

@@ -4,6 +4,7 @@ import routerStore from './routerStore'
 import carpicStore from './carpicStore'
 import largeTableStore from './largeTableStore'
 import salecarStore from './salecarStore'
+import meStore from './meStore'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     routerStore,
     carpicStore,
     largeTableStore,
-    salecarStore
+    salecarStore,
+    meStore
   }
 })

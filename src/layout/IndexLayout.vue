@@ -36,8 +36,24 @@
                         停车场
                     </MenuItem>
                 </div>
+                <div class="info">
+                    <Dropdown @on-click="clickHandle">
+                        <a href="###">
+                            <Avatar :src="`/api/uploads/${store.avatar}`" />
+                            {{store.nickname}}
+                            <Icon type="ios-arrow-down"></Icon>
+                        </a>
+                        <DropdownMenu slot="list">
+                            <DropdownItem name="更改资料">更改资料</DropdownItem>
+                            <DropdownItem name="更改头像">更改头像</DropdownItem>
+                            <DropdownItem name="我的任务">我的任务</DropdownItem>
+                            <DropdownItem name="退出登录">退出登录</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                </div>
             </Menu>
         </Header>
+                    {{store}}
         <!-- 二级路由的电视 -->
         <router-view></router-view>
     </div>
@@ -45,15 +61,30 @@
 
 <script>
     export default {
+        computed: {
+            store(){
+                return this.$store.state.meStore
+            }
+        },
         methods:{
             changeMenuHandle(name){
                 this.$router.push({name})
+            },
+            clickHandle(name){
+                if(name === '更改资料'){
+                    // 弹出抽屉
+                    this.$bus.emit('ShowUserInfoDrawser')
+                }
             }
         }
     }
 </script>
 
 <style scoped lang="stylus">
+    .info a {
+        color:#fff;
+        padding:0 10px;
+    }
     .layout{
         border: 1px solid #d7dde4;
         background: #f5f7f9;
@@ -71,7 +102,7 @@
         left: 20px;
     }
     .layout-nav{
-        width: 750px;
+        width: 800px;
         margin: 0 auto;
         margin-right: 20px;
     }
